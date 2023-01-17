@@ -17,13 +17,26 @@ static void ProductTest()
 {
     ProductManager productManager = new ProductManager(new EfProductDal());
 
-    foreach (var product in productManager.GetAllByUnitPrice(50, 150))
+    var result = productManager.GetAllByUnitPrice(50, 150);
+
+    if (result.Success)
     {
-        Console.WriteLine(product.ProductName);
+        foreach (var product in result.Data)
+        {
+            Console.WriteLine(product.ProductName);
+        }
     }
+    else
+    {
+        Console.WriteLine(result.Message);
+    }
+
     Console.WriteLine("----------------");
 
-    foreach (var product in productManager.GetProductDetails())
+
+
+
+    foreach (var product in productManager.GetProductDetails().Data)
     {
         Console.WriteLine(product.ProductName + " /// " +product.CategoryName);
     }
