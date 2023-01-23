@@ -1,11 +1,7 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -18,16 +14,19 @@ namespace Business.Concrete
         }
 
 
-        public List<Category> GetAll()
+        public IDataResult<List<Category>> GetAll()
         {
             // iş kodları
-            return _categoryDal.GetAll();
-            
+            var filteredCategories = _categoryDal.GetAll();
+            return new SuccessDataResult<List<Category>>(filteredCategories);
+
         }
 
-        public Category GetById(int categoryId)
+        public IDataResult<Category> GetById(int categoryId)
         {
-            return _categoryDal.Get(c => c.CategoryId == categoryId);
+            var filteredCategory = _categoryDal.Get(c => c.CategoryId == categoryId);
+            return new SuccessDataResult<Category>(filteredCategory);
+
         }
     }
 }

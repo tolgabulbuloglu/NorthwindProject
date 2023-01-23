@@ -1,21 +1,15 @@
-﻿
-
-using Business.Concrete;
+﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 
-ProductTest();
+//ProductTest();
 
 //CategoryTest();
 
 
 
-
-
-
-
 static void ProductTest()
 {
-    ProductManager productManager = new ProductManager(new EfProductDal());
+    ProductManager productManager = new ProductManager(new EfProductDal(), new CategoryManager(new EfCategoryDal()));
 
     var result = productManager.GetAllByUnitPrice(50, 150);
 
@@ -38,7 +32,7 @@ static void ProductTest()
 
     foreach (var product in productManager.GetProductDetails().Data)
     {
-        Console.WriteLine(product.ProductName + " /// " +product.CategoryName);
+        Console.WriteLine(product.ProductName + " /// " + product.CategoryName);
     }
 
 
@@ -49,11 +43,11 @@ static void CategoryTest()
     CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
 
 
-    foreach (var category in categoryManager.GetAll())
+    foreach (var category in categoryManager.GetAll().Data)
     {
         Console.WriteLine("Kategori Id: {0}, Kategori Adı: {1}", category.CategoryId, category.CategoryName);
     }
 
     Console.WriteLine("-------------------");
-    Console.WriteLine(categoryManager.GetById(8).CategoryName);
+    Console.WriteLine(categoryManager.GetById(8).Data.CategoryName);
 }
