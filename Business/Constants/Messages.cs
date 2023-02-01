@@ -10,5 +10,12 @@
         public static string ProductUpdated = "Ürün güncellendi";
         public static string ProductNameAlreadyExists = "Aynı isimde ürün eklenemez";
         public static string CategoryLimitExceeded = "Kategori limiti aşıldı";
+        public static string AuthorizationDenied = "Yetkiniz yok";
+        public static string UserRegistered = "Kullanıcı kayıt edildi";
+        public static string UserNotFound = "Kullanıcı bulunamadı";
+        public static string SuccessfulLogin = "Login olundu";
+        public static string PasswordError = "Şifre hatalı";
+        public static string UserAlreadyExists = "Kullanıcı zaten mevcut";
+        public static string AccessTokenCreated = "Access Token oluşturuldu";
     }
 }
